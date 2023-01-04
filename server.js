@@ -48,7 +48,6 @@ app.get("/lists/:name/member", (req, res) => {
     nameList.includes(pathSplit[2]) &&
     pathSplit[3] === "member" &&
     pathSplit.length === 4;
-  console.log(boo);
   if (!boo) {
     res.sendStatus(404);
     return;
@@ -115,15 +114,40 @@ app.put("/lists/:name/members/:email", (req, res) => {
     res.sendStatus(404);
     return;
   }
-  if(listToUpdate){
-  data[index].members = data[index].members.concat(req.params.email);
-  res.sendStatus(200);
-  return;
-  }
-  else{
-    data.push({"name": req.params.name, "members": req.params.email})
+  if (listToUpdate) {
+    data[index].members = data[index].members.concat(req.params.email);
+    res.sendStatus(200);
+    return;
+  } else {
+    data.push({ name: req.params.name, members: req.params.email });
     res.sendStatus(201);
   }
+});
+
+//Bonus Extension
+app.delete("/lists/:name/members/:email", (req, res) => {
+  let nameList = [];
+  data.map((dataElm) => nameList.push(dataElm.name));
+  const pathSplit = req.path.split("/");
+  const boo =
+    pathSplit[1] === "lists" &&
+    nameList.includes(pathSplit[2]) &&
+    pathSplit[3] === "members" &&
+    pathSplit.length === 5;
+  let listToUpdate = data.find((dataElm) => dataElm.name === req.params.name);
+  let index = data.indexOf(listToUpdate);
+  let indexEmail=data[index].members.indexOf(req.params.email)
+  let combinedList;
+  if (!boo) {
+    res.sendStatus(404);
+    return;
+  }
+
+  data[index].members.splice(indexEmail,1);
+//   res.sendStatus(200);
+// console.log(data)
+res.sendStatus(200)
+  return;
 });
 
 const port = process.env.PORT || 5000;
