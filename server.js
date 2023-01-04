@@ -12,7 +12,9 @@ const data=[
   ]
 
 app.get('/lists', (req,res)=> {
-    res.send(data)
+    nameList=[];
+    data.map(dataElm => nameList.push(dataElm.name))
+    res.status(200).send(nameList)
 })
   const port = process.env.PORT || 5000;
 app.listen(port, () => {
