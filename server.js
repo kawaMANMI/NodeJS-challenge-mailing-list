@@ -25,6 +25,10 @@ let data=[
   ]
 
 app.get('/lists', (req,res)=> {
+    if (req.path!=='/lists'){
+        res.sendStatus(404)
+        return;
+    }
  let   nameList=[];
     data.map(dataElm => nameList.push(dataElm.name));
     // if (nameList){
@@ -37,9 +41,22 @@ app.get('/lists', (req,res)=> {
 })
 
 
+//Bonus Extension
+app.get('/lists/:name/member', (req,res)=> {
+    if (req.path!=='/lists/:name/member'){
+        res.sendStatus(404)
+        return;
+    }
+ let   listFound= data.find(dataElm => (dataElm.name ===req.params.name));
+    // if (nameList){
+    res.status(200).json(data[listFound].members);
+    return;
+    // }
+})
+
 
 app.get('/lists/:name', (req,res)=> {
- let   listFound=data.find(dataElm => (dataElm.name ===req.params.name));
+ let   listFound=data.find(dataElm => ());
      if (listFound){
     res.status(200).json(listFound);
     }
@@ -52,7 +69,7 @@ app.get('/lists/:name', (req,res)=> {
 
     //Method 1
 app.delete('/lists/:name', (req,res)=> {
- let   listFound=data.filter(dataElm => (dataElm.name !==req.params.name)); 
+ =data.filter(dataElm => (dataElm.name !==req.params.name)); 
      if (listFound.length!==data.length){
         data=[...listFound]
     // res.status(200).send('successfully deleted');
