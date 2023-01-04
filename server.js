@@ -14,7 +14,26 @@ const data=[
 app.get('/lists', (req,res)=> {
     nameList=[];
     data.map(dataElm => nameList.push(dataElm.name))
-    res.status(200).send(nameList)
+    // if (nameList){
+    res.status(200).json(nameList)
+    return
+    // }
+    // else{
+    //     res.status(200).send('')
+    // }
+})
+
+
+
+app.get('/lists/:name', (req,res)=> {
+    listFound=data.find(dataElm => (dataElm.name ===req.params.name));
+     if (listFound){
+    res.status(200).json(listFound);
+    }
+    else{
+        res.sendStatus(404);
+    }
+    return;
 })
   const port = process.env.PORT || 5000;
 app.listen(port, () => {

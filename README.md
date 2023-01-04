@@ -55,12 +55,12 @@ The data consists of mailing lists which have a name and an array of member emai
 #### Example Express Code
 
 ```javascript
-const lists = new Map();
+const lists = new Map();    // Kawa's comment: why Map??I think we can do it by 
 // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
 
 // add some fake data
 
-app.get("/lists", (req, res) => {
+app.get("/lists", (req, res) => {   
   const listsArray = Array.from(lists.keys()); // Why is this like this? Try it out in your console.
   res.send(listsArray);
 });
