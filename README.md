@@ -145,6 +145,6 @@ After creating your pull request in your assignments repo, try this challenge!
 
 ### Sidebar PUT vs. POST
 
-API's often use POST and PUT for updates. They have slightly different meanings. This [side-by-side comparison](https://restfulapi.net/rest-put-vs-post/) can be helpful but don't get too hung up on that at this stage.
+API's often use POST and PUT for updates. They have slightly different meanings. This [side-by-side comparison](https:git//restfulapi.net/rest-put-vs-post/) can be helpful but don't get too hung up on that at this stage.
 
 - `POST /lists/:name/members` with a body containing an email will add it to the list, even if it's already there
