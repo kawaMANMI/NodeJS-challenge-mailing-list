@@ -39,10 +39,10 @@ app.get("/lists", (req, res) => {
   data.map((dataElm) => nameList.push(dataElm.name));
   // if (nameList){
   res.status(200).json(nameList);
-  res.set({
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-});
+//   res.set({
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "*",
+// });
   return;
   // }
   // else{
